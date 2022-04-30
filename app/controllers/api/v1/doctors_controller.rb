@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Api::V1::DoctorsController < ApiController
   # before_action :authenticate_user!
-  before_action :set_doctor, only: [:show, :update, :destroy]
+  before_action :set_doctor, only: %i[show update destroy]
 
   # GET /doctors
   def index
@@ -40,13 +42,14 @@ class Api::V1::DoctorsController < ApiController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_doctor
-      @doctor = Doctor.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def doctor_params
-      params.require(:doctor).permit(:name, :specialty, :address, :phone, :email)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_doctor
+    @doctor = Doctor.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def doctor_params
+    params.require(:doctor).permit(:name, :specialty, :address, :phone, :email)
+  end
 end
