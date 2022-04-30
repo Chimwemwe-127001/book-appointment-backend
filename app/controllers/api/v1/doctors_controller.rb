@@ -1,5 +1,5 @@
-class Api::V1::DoctorsController < ApplicationController
-  before_action :authenticate_user!
+class Api::V1::DoctorsController < ApiController
+  # before_action :authenticate_user!
   before_action :set_doctor, only: [:show, :update, :destroy]
 
   # GET /doctors
