@@ -21,13 +21,12 @@ class Api::V1::DoctorsController < ApiController
 
   # POST /doctors
   def create
-    @doctor = Doctor.new(doctor_params)
-
-    if @doctor.save
-      render json: @doctor, status: :created, location: @doctor
-    else
-      render json: @doctor.errors, status: :unprocessable_entity
-    end
+    @new_doctor = Doctor.new(doctor_params)
+     if @new_doctor.save
+       render json: { success: true, message: 'Post created', data: { doctor: @new_doctor } }, status: :created
+     else
+       render json: { success: false, errors: new_doctor.errors }, status: :unprocessable_entity
+     end
   end
 
   # DELETE /doctors/1
