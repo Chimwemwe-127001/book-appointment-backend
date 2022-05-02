@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Doctor < ApplicationRecord
   validates :name, presence: true, length: { in: 1..50 }
   validates :details, presence: true, length: { in: 1..500 }
