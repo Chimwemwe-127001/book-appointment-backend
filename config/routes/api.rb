@@ -5,6 +5,8 @@ namespace :api do
       post '/', to: 'registrations#create', as: :user_registration
     end
     resources :doctors
+
+    get '/users/me', to: 'users#me'
   end
 end 
 
