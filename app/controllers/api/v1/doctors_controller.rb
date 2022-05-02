@@ -14,11 +14,6 @@ class Api::V1::DoctorsController < ApiController
       end
   end
 
-  # GET /doctors/1
-  def show
-    render json: @doctor
-  end
-
   # POST /doctors
   def create
     @new_doctor = Doctor.new(doctor_params)
