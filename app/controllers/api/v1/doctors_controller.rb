@@ -30,18 +30,15 @@ class Api::V1::DoctorsController < ApiController
     end
   end
 
-  # PATCH/PUT /doctors/1
-  def update
-    if @doctor.update(doctor_params)
-      render json: @doctor
-    else
-      render json: @doctor.errors, status: :unprocessable_entity
-    end
-  end
-
   # DELETE /doctors/1
   def destroy
-    @doctor.destroy
+    @doctor = User.find(params[:doctor_id])
+    if @doctor
+      @doctor.destroy
+      render json: { success: true, message: 'Doctor deleted', data: { doctor: @doctor } }, status: :created
+    else
+      render json: { success: false, errors: 'Wrong doctor id' }, status: :unprocessable_entity
+    end
   end
 
   private
