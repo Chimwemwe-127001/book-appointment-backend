@@ -20,5 +20,6 @@ namespace :api do
   namespace :v1 do
       get '/doctors', to: 'doctors#index'
       post '/doctors/create', to: 'doctors#create'
+      delete '/doctor/delete', to: 'doctors#destroy'
 end
 end

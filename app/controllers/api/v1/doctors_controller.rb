@@ -2,7 +2,6 @@
 
 class Api::V1::DoctorsController < ApiController
   # before_action :authenticate_user!
-  before_action :set_doctor, only: %i[show update destroy]
 
   # GET /doctors
   def index
@@ -26,9 +25,9 @@ class Api::V1::DoctorsController < ApiController
 
   # DELETE /doctors/1
   def destroy
-    @doctor = User.find(params[:doctor_id])
-    if @doctor
-      @doctor.destroy
+    @doctor = Doctor.find(params[:doctor_id])
+    # if @doctor
+     if @doctor.destroy
       render json: { success: true, message: 'Doctor deleted', data: { doctor: @doctor } }, status: :created
     else
       render json: { success: false, errors: 'Wrong doctor id' }, status: :unprocessable_entity
@@ -38,7 +37,7 @@ class Api::V1::DoctorsController < ApiController
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_doctor
-    @doctor = Doctor.find(params[:id])
-  end
+  # def set_doctor
+  #   @doctor = Doctor.find(params[:id])
+  # end
 end
