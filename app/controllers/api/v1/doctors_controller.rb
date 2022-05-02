@@ -16,9 +16,9 @@ class Api::V1::DoctorsController < ApiController
 
   # POST /doctors
   def create
-    @new_doctor = Doctor.new(doctor_params)
+    @new_doctor = Doctor.new(name: params[:name], details: params[:details], photo: params[:photo], city: params[:city], specialization: params[:specialization], cost: params[:cost])
      if @new_doctor.save
-       render json: { success: true, message: 'Post created', data: { doctor: @new_doctor } }, status: :created
+       render json: { success: true, message: 'Doctor created', data: { doctor: @new_doctor } }, status: :created
      else
        render json: { success: false, errors: new_doctor.errors }, status: :unprocessable_entity
      end
@@ -40,10 +40,5 @@ class Api::V1::DoctorsController < ApiController
   # Use callbacks to share common setup or constraints between actions.
   def set_doctor
     @doctor = Doctor.find(params[:id])
-  end
-
-  # Only allow a trusted parameter "white list" through.
-  def doctor_params
-    params.require(:doctor).permit(:name, :specialty, :address, :phone, :email)
   end
 end
