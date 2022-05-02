@@ -5,5 +5,4 @@ class Doctor < ApplicationRecord
   validates :city, presence: true, length: { in: 1..50 }
   validates :specialization, presence: true, length: { in: 1..50 }
   validates :cost, presence: true, numericality: { greater_than_or_equal_to: 1 }
-
 end
