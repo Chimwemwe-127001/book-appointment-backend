@@ -26,7 +26,6 @@ class Api::V1::DoctorsController < ApiController
   # DELETE /doctors/1
   def destroy
     @doctor = Doctor.find(params[:doctor_id])
-    # if @doctor
      if @doctor.destroy
       render json: { success: true, message: 'Doctor deleted', data: { doctor: @doctor } }, status: :created
     else
@@ -34,10 +33,4 @@ class Api::V1::DoctorsController < ApiController
     end
   end
 
-  private
-
-  # Use callbacks to share common setup or constraints between actions.
-  # def set_doctor
-  #   @doctor = Doctor.find(params[:id])
-  # end
 end
