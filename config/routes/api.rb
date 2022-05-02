@@ -15,3 +15,9 @@ scope :api do
     end
   end
 end
+
+namespace :api do
+  namespace :v1 do
+      get '/doctors', to: 'doctors#index'
+end
+end
