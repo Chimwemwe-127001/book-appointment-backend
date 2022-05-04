@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'doctors#home'
+  root 'clients#home'
 
   use_doorkeeper
   devise_for :users

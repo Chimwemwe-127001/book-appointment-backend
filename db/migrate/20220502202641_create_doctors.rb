@@ -11,5 +11,3 @@ class CreateDoctors < ActiveRecord::Migration[7.0]
     end
   end
 end
-
-Doctor.new(name: "Ranjeet", details: "details", photo: "photo", city: "city", specialization: "speciality", cost: 200)
