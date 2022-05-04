@@ -2,54 +2,35 @@
 
 class Api::V1::DoctorsController < ApiController
   # before_action :authenticate_user!
-  before_action :set_doctor, only: %i[show update destroy]
 
   # GET /doctors
   def index
     @doctors = Doctor.all
-
-    render json: @doctors
-  end
-
-  # GET /doctors/1
-  def show
-    render json: @doctor
+    if @doctors
+      render json: { success: true, message: 'Loaded all doctors', data: { doctors: @doctors } }, status: :ok
+    else
+      render json: { success: false, errors: 'Opps! Something went wrong' }, status: :unprocessable_entity
+    end
   end
 
   # POST /doctors
   def create
-    @doctor = Doctor.new(doctor_params)
-
-    if @doctor.save
-      render json: @doctor, status: :created, location: @doctor
+    @new_doctor = Doctor.new(name: params[:name], details: params[:details], photo: params[:photo],
+                             city: params[:city], specialization: params[:specialization], cost: params[:cost])
+    if @new_doctor.save
+      render json: { success: true, message: 'Doctor created', data: { doctor: @new_doctor } }, status: :created
     else
-      render json: @doctor.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /doctors/1
-  def update
-    if @doctor.update(doctor_params)
-      render json: @doctor
-    else
-      render json: @doctor.errors, status: :unprocessable_entity
+      render json: { success: false, errors: new_doctor.errors }, status: :unprocessable_entity
     end
   end
 
   # DELETE /doctors/1
   def destroy
-    @doctor.destroy
-  end
-
-  private
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_doctor
-    @doctor = Doctor.find(params[:id])
-  end
-
-  # Only allow a trusted parameter "white list" through.
-  def doctor_params
-    params.require(:doctor).permit(:name, :specialty, :address, :phone, :email)
+    @doctor = Doctor.find(params[:doctor_id])
+    if @doctor.destroy
+      render json: { success: true, message: 'Doctor deleted', data: { doctor: @doctor } }, status: :created
+    else
+      render json: { success: false, errors: 'Wrong doctor id' }, status: :unprocessable_entity
+    end
   end
 end
