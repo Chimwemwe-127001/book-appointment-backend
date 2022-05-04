@@ -22,7 +22,7 @@ class Api::V1::ReservationsController < ApiController
       end
     end
   
-    # DELETE /doctors/1
+    # DELETE /reservations/1
     def destroy
       @reservation = Reservation.find(params[:reservation_id])
       if @reservation.destroy
