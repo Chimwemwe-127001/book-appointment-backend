@@ -12,4 +12,4 @@ if Doorkeeper::Application.count.zero?
   Doorkeeper::Application.create(name: "React", redirect_uri: "", scopes: "")
 end
 
-User.first_or_create!(email: 'johndoe@gmmail.com', password:'123456', password_confirmation: '123456', role: User.roles[:admin])
+User.first_or_create!(name:'John Doe', email: 'johndoe@gmail.com', password:'123456', password_confirmation: '123456', role: User.roles[:admin])
