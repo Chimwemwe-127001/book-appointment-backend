@@ -6,6 +6,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :reservations, dependent: :destroy
+  has_many :doctors, through: :reservations
+
   validates :name, presence: true
   validates :email, format: URI::MailTo::EMAIL_REGEXP
   enum role: %i[user admin]

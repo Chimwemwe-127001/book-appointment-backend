@@ -20,8 +20,16 @@ end
 
 namespace :api do
   namespace :v1 do
-      get '/doctors', to: 'doctors#index'
-      post '/doctors/create', to: 'doctors#create'
-      delete '/doctor/delete', to: 'doctors#destroy'
+    get '/doctors', to: 'doctors#index'
+    post '/doctors/create', to: 'doctors#create'
+    delete '/doctor/delete', to: 'doctors#destroy'
+  end
 end
+
+namespace :api do
+  namespace :v1 do
+    get '/reservations', to: 'reservations#index'
+    post '/reservations/create', to: 'reservations#create'
+    delete '/reservations/delete', to: 'reservations#destroy'
+  end
 end
