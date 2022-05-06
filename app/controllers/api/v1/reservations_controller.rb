@@ -14,9 +14,8 @@ class Api::V1::ReservationsController < ApiController
 
   # POST /reservations
   def create
-    @user = User.find(params[:user_id])
-    @new_reservation = @user.reservations.create(city: params[:city], date: params[:date],
-                                                 doctor_id: params[:doctor_id])
+    @new_reservation = current_user.reservations.create(city: params[:city], date: params[:date],
+                                                        doctor_id: params[:doctor_id])
     if @new_reservation.save
       render json: { success: true, message: 'Reservation created', data: { reservation: @new_reservation } },
              status: :created
