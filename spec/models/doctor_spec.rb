@@ -46,6 +46,16 @@ RSpec.describe Doctor, type: :model do
       expect(subject).to_not be_valid
     end
 
+    it 'check the city is not blank' do
+      subject.city = nil
+      expect(subject).to_not be_valid
+    end
+
+    it 'check if the city is not exceeding 50 characters' do
+      subject.city = 'Hello world Hello world Hello world Hello world Hello world Hello world'
+      expect(subject).to_not be_valid
+    end
+
     it 'check the cost is not blank' do
       subject.cost = nil
       expect(subject).to_not be_valid
