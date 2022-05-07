@@ -56,6 +56,16 @@ RSpec.describe Doctor, type: :model do
       expect(subject).to_not be_valid
     end
 
+    it 'check the specialization is not blank' do
+      subject.specialization = nil
+      expect(subject).to_not be_valid
+    end
+
+    it 'check if the specialization is not exceeding 50 characters' do
+      subject.specialization = 'Hello world Hello world Hello world Hello world Hello world Hello world'
+      expect(subject).to_not be_valid
+    end
+
     it 'check the cost is not blank' do
       subject.cost = nil
       expect(subject).to_not be_valid
