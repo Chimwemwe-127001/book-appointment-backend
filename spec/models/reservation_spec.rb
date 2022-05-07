@@ -6,12 +6,12 @@ RSpec.describe Reservation, type: :model do
   describe 'Reservation model' do
     user = User.create(name: 'Ritta Sweta', email: 'ritta@example.com', password: '123456')
     doctor = Doctor.new(
-      user_id: user, 
-      name: 'Dr. Martin', 
-      details: 'In the past 20 years I have been a doctor for the heart', 
-      photo: 'https://unsplash.com/photos/F_-0BxGuVvo', 
-      city: 'Delhi, India', 
-      specialization: 'Carthodologist', 
+      user_id: user,
+      name: 'Dr. Martin',
+      details: 'In the past 20 years I have been a doctor for the heart',
+      photo: 'https://unsplash.com/photos/F_-0BxGuVvo',
+      city: 'Delhi, India',
+      specialization: 'Carthodologist',
       cost: 235
     )
     subject { Reservation.new(user_id: user, doctor_id: doctor, city: 'Delhi,India', date: '08-09-2022') }

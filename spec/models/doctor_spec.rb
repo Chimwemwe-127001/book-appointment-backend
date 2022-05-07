@@ -4,13 +4,16 @@ require 'rails_helper'
 
 RSpec.describe Doctor, type: :model do
   describe 'Doctor model' do
-    subject { Doctor.new(
-      name: 'Dr. Martin', 
-      details: 'In the past 20 years I have been a doctor for the heart', 
-      photo: 'https://unsplash.com/photos/F_-0BxGuVvo', 
-      city: 'Delhi, India', 
-      specialization: 'Carthodologist', 
-      cost: 235) }
+    subject do
+      Doctor.new(
+        name: 'Dr. Martin',
+        details: 'In the past 20 years I have been a doctor for the heart',
+        photo: 'https://unsplash.com/photos/F_-0BxGuVvo',
+        city: 'Delhi, India',
+        specialization: 'Carthodologist',
+        cost: 235
+      )
+    end
     before { subject.save }
 
     it 'check the name is not blank' do
