@@ -4,9 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Doctor, type: :model do
   describe 'Doctor model' do
-    user = User.create(name: 'Ritta Sweta', email: 'ritta@gmail.com', password: '123456')
     subject { Doctor.new(
-      user_id: user, 
       name: 'Dr. Martin', 
       details: 'In the past 20 years I have been a doctor for the heart', 
       photo: 'https://unsplash.com/photos/F_-0BxGuVvo', 
@@ -30,7 +28,7 @@ RSpec.describe Doctor, type: :model do
       expect(subject).to_not be_valid
     end
 
-    it 'check if the name is not exceeding 500 characters' do
+    it 'check if the details is not exceeding 500 characters' do
       subject.details = 'Hello world Hello world Hello world Hello world Hello world Hello world
       Hello world Hello world Hello world Hello world Hello world Hello world
       Hello world Hello world Hello world Hello world Hello world Hello world
