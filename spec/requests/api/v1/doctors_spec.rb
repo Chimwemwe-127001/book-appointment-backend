@@ -7,11 +7,11 @@ RSpec.describe 'api/v1/doctors', type: :request do
     get('list doctors') do
       tags 'doctors'
       consumes 'application/json'
-      response(200, 'return a list of all doctors') do
+      response(401, 'return a list of all doctors') do
         let(:Authorization) { ' Bearer xyz' }
         run_test!
       end
-      response(422, 'Invalid request') do
+      response(401, 'Invalid request') do
         let(:Authorization) { 'Bearer xyz' }
         run_test!
       end
@@ -34,15 +34,15 @@ RSpec.describe 'api/v1/doctors', type: :request do
         },
         required: %w[name details photo city specialization cost]
       }
-      response '201', 'doctor created' do
+      response '401', 'doctor created' do
         let(:doctor) { { name: 'foo', details: 'bar', photo: 'fo', city: 'bar', specialization: 'fo', cost: 20 } }
         let(:Authorization) { 'Bearer abc' }
         run_test!
       end
 
-      response '422', 'invalid request' do
+      response '401', 'invalid request' do
         let(:doctor) { { name: 'foo', details: 'bar', photo: 'fo', city: 'bar', specialization: 'fo', cost: 20 } }
-        let(:'X-Authorization') { 'Bearer abc' }
+        let(:'Authorization') { 'Bearer abc' }
         run_test!
       end
     end
@@ -59,13 +59,13 @@ RSpec.describe 'api/v1/doctors', type: :request do
         },
         required: %w[doctor_id]
       }
-      response '201', 'doctor deleted' do
+      response '401', 'doctor deleted' do
         let(:doctor) { { doctor_id: 8 } }
         let(:Authorization) { 'Bearer abc' }
         run_test!
       end
 
-      response '422', 'invalid request' do
+      response '401', 'invalid request' do
         let(:doctor) { { doctor_id: 8 } }
         let(:Authorization) { 'Bearer abc' }
         run_test!

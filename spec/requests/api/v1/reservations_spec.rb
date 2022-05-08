@@ -7,11 +7,11 @@ RSpec.describe 'api/v1/reservations', type: :request do
     get('list reservations') do
       tags 'reservations'
       consumes 'application/json'
-      response(200, 'return a list of all reservations') do
+      response(401, 'return a list of all reservations') do
         let(:Authorization) { ' Bearer xyz' }
         run_test!
       end
-      response(422, 'Invalid request') do
+      response(401, 'Invalid request') do
         let(:Authorization) { 'Bearer xyz' }
         run_test!
       end
@@ -31,15 +31,15 @@ RSpec.describe 'api/v1/reservations', type: :request do
         },
         required: %w[city date doctor_id]
       }
-      response '201', 'reservation created' do
+      response '401', 'reservation created' do
         let(:reservation) { { city: 'foo', date: '17-06-2025', doctor_id: 8 } }
         let(:Authorization) { 'Bearer abc' }
         run_test!
       end
 
-      response '422', 'invalid request' do
+      response '401', 'invalid request' do
         let(:reservation) { { city: 'foo', date: '17-06-2025', doctor_id: 8 } }
-        let(:'X-Authorization') { 'Bearer abc' }
+        let(:'Authorization') { 'Bearer abc' }
         run_test!
       end
     end
@@ -56,13 +56,13 @@ RSpec.describe 'api/v1/reservations', type: :request do
         },
         required: %w[reservation_id]
       }
-      response '201', 'reservation deleted' do
+      response '401', 'reservation deleted' do
         let(:reservation) { { reservation_id: 8 } }
         let(:Authorization) { 'Bearer abc' }
         run_test!
       end
 
-      response '422', 'invalid request' do
+      response '401', 'invalid request' do
         let(:reservation) { { reservation_id: 8 } }
         let(:Authorization) { 'Bearer abc' }
         run_test!
