@@ -1,9 +1,9 @@
 require 'swagger_helper'
-RSpec.describe 'api/v1/doctors', type: :request do
-  path '/api/v1/doctors' do
+RSpec.describe 'api/v1/reservations', type: :request do
+  path '/api/v1/reservations' do
     parameter name: 'Authorization', in: :header, type: :string, description: 'bearer xyz'
-    get('list doctors') do
-      tags 'doctors'
+    get('list reservations') do
+      tags 'reservations'
       consumes 'application/json'
      response(200, 'successful') do
         let(:'Authorization') { ' Bearer xyz' }
@@ -15,56 +15,53 @@ RSpec.describe 'api/v1/doctors', type: :request do
       end
       end
     end
-    path '/api/v1/doctors/create' do
+    path '/api/v1/reservations/create' do
       parameter name: 'Authorization', in: :header, type: :string, description: 'bearer xyz'
-      post 'Create a doctor' do
-        tags 'doctors'
+      post 'Create a reservation' do
+        tags 'reservations'
         consumes 'application/json'
-        parameter name: :doctor, in: :body, schema: {
+        parameter name: :reservation, in: :body, schema: {
           type: :object,
           properties: {
-            name: { type: :string },
-            details: { type: :string },
-            photo: { type: :string },
             city: { type: :string },
-            specialization: { type: :string },
-            cost: { type: :number },
+            date: { type: :string },
+            doctor_id: { type: :number }
           },
-          required: %w[name details photo city specialization cost]
+          required: %w[city date doctor_id]
         }
-        response '201', 'doctor created' do
-          let(:doctor) { { name: 'foo', details: 'bar', photo: 'fo', city: 'bar', specialization: 'fo', cost: 20 } }
+        response '201', 'reservation created' do
+          let(:reservation) { { city: 'foo', date: '17-06-2025',doctor_id: 8 } }
           let(:'Authorization') { 'Bearer abc' }
           run_test!
         end
   
         response '422', 'invalid request' do
-          let(:doctor) { { name: 'foo', details: 'bar', photo: 'fo', city: 'bar', specialization: 'fo', cost: 20 } }
+          let(:reservation) { { city: 'foo', date: '17-06-2025',doctor_id: 8 } }
           let(:'X-Authorization') { 'Bearer abc' }
           run_test!
         end
       end
     end
-    path '/api/v1/doctors/delete' do
+    path '/api/v1/reservations/delete' do
       parameter name: 'Authorization', in: :header, type: :string, description: 'bearer xyz'
-      delete 'Delete a doctor' do
-        tags 'doctors'
+      delete 'Delete a reservatio' do
+        tags 'reservations'
         consumes 'application/json'
-        parameter name: :doctor, in: :body, schema: {
+        parameter name: :reservation, in: :body, schema: {
           type: :object,
           properties: {
-            doctor_id: { type: :number }
+            reservation_id: { type: :number }
           },
-          required: %w[doctor_id]
+          required: %w[reservation_id]
         }
-        response '201', 'doctor deleted' do
-          let(:doctor) { { doctor_id: 8 } }
+        response '201', 'reservation deleted' do
+          let(:reservation) { { reservation_id: 8 } }
           let(:'Authorization') { 'Bearer abc' }
           run_test!
         end
   
         response '422', 'invalid request' do
-          let(:doctor) { { doctor_id: 8 } }
+          let(:reservation) { { reservation_id: 8 } }
           let(:'Authorization') { 'Bearer abc' }
           run_test!
         end
