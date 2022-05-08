@@ -17,7 +17,7 @@ paths:
       - doctors
       responses:
         '200':
-          description: successful
+          description: return a list of all doctors
         '422':
           description: Invalid request
   "/api/v1/doctors/create":
@@ -102,7 +102,7 @@ paths:
       - reservations
       responses:
         '200':
-          description: successful
+          description: return a list of all reservations
         '422':
           description: Invalid request
   "/api/v1/reservations/create":
@@ -165,6 +165,69 @@ paths:
                   type: number
               required:
               - reservation_id
+  "/api/v1/users":
+    post:
+      summary: Sign up
+      tags:
+      - users
+      parameters: []
+      responses:
+        '201':
+          description: Sign up successfull with returned access token
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                client_id:
+                  type: string
+              required:
+              - name
+              - email
+              - password
+              - client_id
+  "/api/v1/users/aouth/token":
+    post:
+      summary: Sign in
+      tags:
+      - users
+      parameters: []
+      responses:
+        '201':
+          description: Sign in successfull with returned access token
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                grant_type:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                client_id:
+                  type: string
+                client_secret:
+                  type: string
+              required:
+              - email
+              - password
+              - grant_type
+              - client_id
+              - client_secret
 servers:
 - url: https://{defaultHost}
   variables:
