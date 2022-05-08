@@ -6,7 +6,7 @@
 
 ## Link to the front end
 
-[Hello React front end](https://github.com/Chimwemwe-127001/book-appointment-frontend)
+[Book Appoinments Frontend](https://github.com/Chimwemwe-127001/book-appointment-frontend)
 
 ## Built With
 
@@ -30,7 +30,6 @@ To get a local copy up and running follow these simple example steps.
 ### Using it Locally
 
 - Clone the project
-
 ```
 git clone git@github.com:Chimwemwe-127001/book-appointment-backend.git
 cd book-appointment-backend
