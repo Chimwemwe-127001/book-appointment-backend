@@ -39,7 +39,7 @@ RSpec.describe 'api/v1/reservations', type: :request do
 
       response '401', 'invalid request' do
         let(:reservation) { { city: 'foo', date: '17-06-2025', doctor_id: 8 } }
-        let(:'Authorization') { 'Bearer abc' }
+        let(:Authorization) { 'Bearer abc' }
         run_test!
       end
     end

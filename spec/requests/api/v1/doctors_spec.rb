@@ -42,7 +42,7 @@ RSpec.describe 'api/v1/doctors', type: :request do
 
       response '401', 'invalid request' do
         let(:doctor) { { name: 'foo', details: 'bar', photo: 'fo', city: 'bar', specialization: 'fo', cost: 20 } }
-        let(:'Authorization') { 'Bearer abc' }
+        let(:Authorization) { 'Bearer abc' }
         run_test!
       end
     end
