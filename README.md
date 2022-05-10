@@ -17,7 +17,7 @@
 
 ## Live version
 
-[Book-Appoinments-Backend](BcctMb_nvCL5sRWH-hxD9svAwTxZmieLr8YBXcvZoZI)
+[Book-Appoinments-Backend](https://book-appointments-backend.herokuapp.com/)
 
 ## Getting Started
 
