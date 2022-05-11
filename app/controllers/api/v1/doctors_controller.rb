@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../../concerns/helper'
+
 class Api::V1::DoctorsController < ApiController
   include RenderHelper
 
@@ -7,7 +9,7 @@ class Api::V1::DoctorsController < ApiController
   def index
     @doctors = Doctor.all
     if @doctors
-      render_success({message: 'Loaded all doctors', data: { doctors: @doctors } })
+      render_success({ message: 'Loaded all doctors', data: { doctors: @doctors } })
     else
       render_error('Ooops! Something went wrong')
     end

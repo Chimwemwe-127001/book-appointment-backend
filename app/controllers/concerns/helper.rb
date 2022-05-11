@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module RenderHelper
   extend ActiveSupport::Concern
 
@@ -11,9 +13,7 @@ module RenderHelper
 
   def create_helper(value, message)
     if value.id
-      if value.destroy!
-      render_success({ message: message, data: value })
-      end
+      render_success({ message: message, data: value }) if value.destroy!
     elsif value.save
       render_success({ message: message, data: value })
     else

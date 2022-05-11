@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-require_relative '../../concerns/helper.rb'
+
+require_relative '../../concerns/helper'
 
 class Api::V1::ReservationsController < ApiController
   include RenderHelper
@@ -8,7 +9,7 @@ class Api::V1::ReservationsController < ApiController
   def index
     @reservations = current_user.reservations
     if @reservations
-      render_success({message: 'Loaded all reservations', data: { reservations: @reservations } })
+      render_success({ message: 'Loaded all reservations', data: { reservations: @reservations } })
     else
       render_error('Ooops! Something went wrong')
     end
