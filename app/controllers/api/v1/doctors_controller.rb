@@ -1,15 +1,16 @@
 # frozen_string_literal: true
+require_relative '../../concerns/helper.rb'
 
 class Api::V1::DoctorsController < ApiController
-  # before_action :authenticate_user!
+  include RenderHelper
 
   # GET /doctors
   def index
     @doctors = Doctor.all
     if @doctors
-      render json: { success: true, message: 'Loaded all doctors', data: { doctors: @doctors } }, status: :ok
+      render_success({message: 'Loaded all doctors', data: { doctors: @doctors } })
     else
-      render json: { success: false, errors: 'Opps! Something went wrong' }, status: :unprocessable_entity
+      render_error('Ooops! Something went wrong')
     end
   end
 
@@ -17,20 +18,12 @@ class Api::V1::DoctorsController < ApiController
   def create
     @new_doctor = Doctor.new(name: params[:name], details: params[:details], photo: params[:photo],
                              city: params[:city], specialization: params[:specialization], cost: params[:cost])
-    if @new_doctor.save
-      render json: { success: true, message: 'Doctor created', data: { doctor: @new_doctor } }, status: :created
-    else
-      render json: { success: false, errors: new_doctor.errors }, status: :unprocessable_entity
-    end
+    create_helper(@new_doctor, 'Doctor created')
   end
 
   # DELETE /doctors/1
   def destroy
-    @doctor = Doctor.find(params[:doctor_id])
-    if @doctor.destroy
-      render json: { success: true, message: 'Doctor deleted', data: { doctor: @doctor } }, status: :created
-    else
-      render json: { success: false, errors: 'Wrong doctor id' }, status: :unprocessable_entity
-    end
+    @doctor = Doctor.find(params[:id])
+    create_helper(@doctor, 'Doctor deleted')
   end
 end
