@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-require_relative '../../concerns/helper.rb'
 
 class Api::V1::DoctorsController < ApiController
   include RenderHelper

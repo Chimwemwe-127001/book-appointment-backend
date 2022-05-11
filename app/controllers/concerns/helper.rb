@@ -1,4 +1,6 @@
 module RenderHelper
+  extend ActiveSupport::Concern
+
   def render_success(options)
     render json: { success: true, message: options[:message], data: options[:data] }, status: :multi_status
   end
