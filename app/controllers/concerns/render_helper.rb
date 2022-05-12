@@ -12,12 +12,9 @@ module RenderHelper
   end
 
   def create_helper(value, message)
-    if value.id
-      if value.destroy!
-        render_success({ message: message, data: value })
-      elsif value.save
-        render_success({ message: message, data: value })
-      end
+    if value
+      render_success({ message: message, data: value }) if value.destroy!
+      render_success({ message: message, data: value }) if value.save
     else
       render_error(value.errors)
     end
