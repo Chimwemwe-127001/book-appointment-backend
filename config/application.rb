@@ -25,8 +25,6 @@ module BookAppointmentBackend
     # config.api_only = true
     config.api_only = false
 
-    config.autoloader = :classic
-
     # handle cross connections
     config.middleware.insert_before 0, Rack::Cors do
       allow do
