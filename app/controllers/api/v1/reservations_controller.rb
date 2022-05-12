@@ -17,7 +17,7 @@ class Api::V1::ReservationsController < ApiController
 
   # POST /reservations
   def create
-    @new_reservation = current_user.reservations.create(city: params[:city], date: params[:date],
+    @new_reservation = current_user.reservations.new(city: params[:city], date: params[:date],
                                                         doctor_id: params[:doctor_id])
     create_helper(@new_reservation, 'Reservation created')
   end
