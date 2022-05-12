@@ -65,6 +65,32 @@ rails server
 
 Visit http://localhost:3000/ in your browser.
 
+### Run tests
+
+Install npm with:
+
+```
+npm i
+```
+
+Install rspec with:
+
+```
+bundle install
+```
+
+and
+
+```
+rails generate rspec:install
+```
+
+run the test with:
+
+```
+rspec spec
+```
+
 ### Open API documentation
 
 ```
