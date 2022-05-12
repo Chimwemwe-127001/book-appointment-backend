@@ -1,0 +1,219 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/doctors":
+    parameters:
+    - name: Authorization
+      in: header
+      description: bearer xyz
+      schema:
+        type: string
+    get:
+      summary: list doctors
+      tags:
+      - doctors
+      responses:
+        '401':
+          description: Invalid request
+  "/api/v1/doctors/create":
+    parameters:
+    - name: Authorization
+      in: header
+      description: bearer xyz
+      schema:
+        type: string
+    post:
+      summary: Create a doctor
+      tags:
+      - doctors
+      parameters: []
+      responses:
+        '401':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                details:
+                  type: string
+                photo:
+                  type: string
+                city:
+                  type: string
+                specialization:
+                  type: string
+                cost:
+                  type: number
+              required:
+              - name
+              - details
+              - photo
+              - city
+              - specialization
+              - cost
+  "/api/v1/doctors/delete":
+    parameters:
+    - name: Authorization
+      in: header
+      description: bearer xyz
+      schema:
+        type: string
+    delete:
+      summary: Delete a doctor
+      tags:
+      - doctors
+      parameters: []
+      responses:
+        '401':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                doctor_id:
+                  type: number
+              required:
+              - doctor_id
+  "/api/v1/reservations":
+    parameters:
+    - name: Authorization
+      in: header
+      description: bearer xyz
+      schema:
+        type: string
+    get:
+      summary: list reservations
+      tags:
+      - reservations
+      responses:
+        '401':
+          description: Invalid request
+  "/api/v1/reservations/create":
+    parameters:
+    - name: Authorization
+      in: header
+      description: bearer xyz
+      schema:
+        type: string
+    post:
+      summary: Create a reservation
+      tags:
+      - reservations
+      parameters: []
+      responses:
+        '401':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                city:
+                  type: string
+                date:
+                  type: string
+                doctor_id:
+                  type: number
+              required:
+              - city
+              - date
+              - doctor_id
+  "/api/v1/reservations/delete":
+    parameters:
+    - name: Authorization
+      in: header
+      description: bearer xyz
+      schema:
+        type: string
+    delete:
+      summary: Delete a reservatio
+      tags:
+      - reservations
+      parameters: []
+      responses:
+        '401':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reservation_id:
+                  type: number
+              required:
+              - reservation_id
+  "/api/v1/users":
+    post:
+      summary: Sign up
+      tags:
+      - users
+      parameters: []
+      responses:
+        '401':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                client_id:
+                  type: string
+              required:
+              - name
+              - email
+              - password
+              - client_id
+  "/api/v1/oauth/token":
+    post:
+      summary: Sign in
+      tags:
+      - users
+      parameters: []
+      responses:
+        '401':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                grant_type:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                client_id:
+                  type: string
+                client_secret:
+                  type: string
+              required:
+              - email
+              - password
+              - grant_type
+              - client_id
+              - client_secret
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
