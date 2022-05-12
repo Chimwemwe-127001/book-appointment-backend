@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../../concerns/helper'
+require_relative '../../concerns/render_helper'
 
 class Api::V1::ReservationsController < ApiController
   include RenderHelper
