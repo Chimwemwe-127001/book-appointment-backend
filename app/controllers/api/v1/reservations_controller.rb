@@ -19,12 +19,12 @@ class Api::V1::ReservationsController < ApiController
   def create
     @new_reservation = current_user.reservations.new(city: params[:city], date: params[:date],
                                                      doctor_id: params[:doctor_id])
-    create_helper(@new_reservation, 'Reservation created', 'create')
+    create_helper(@new_reservation, 'Reservation created')
   end
 
   # DELETE /reservations/1
   def destroy
     @reservation = Reservation.find(params[:id])
-    create_helper(@new_reservation, 'Reservation deleted', 'delete')
+    create_helper(@reservation, 'Reservation deleted')
   end
 end
