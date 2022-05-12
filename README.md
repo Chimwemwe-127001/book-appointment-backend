@@ -8,6 +8,9 @@
 
 [Book Appoinments Frontend](https://github.com/Chimwemwe-127001/book-appointment-frontend)
 
+## Kanban Board
+[Kanban Board](https://github.com/users/Chimwemwe-127001/projects/3)
+
 ## Built With
 
 - Major languages (Ruby)
